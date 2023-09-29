@@ -70,8 +70,7 @@ void print(int l1, int r1)
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
-    cout << "Enter the nodes ";
+    cout << "Enter the nodes: ";
     cin >> n;
     cout << "Enter the probablities ";
     for (int i = 1; i <= n; i++)

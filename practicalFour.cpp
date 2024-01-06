@@ -5,6 +5,8 @@ i. Insert new node
 ii. Minimum data value found in the tree
 iii. Search a value 
 iv. Display all the nodes.
+v. Find number of nodes in longest path from root
+vi. Change a tree so that the roles of the left and right pointers are swapped at every node 
 */
 
 #include "bits/stdc++.h"
@@ -51,7 +53,7 @@ public:
         {
             if (root->data == x)
             {
-                cout << "Enter found :) " << endl;
+                cout << "Entry found :) " << endl;
                 return;
             }
             else if (x < root->data)
@@ -100,6 +102,22 @@ public:
             cout << root->data << " ";
         }
     }
+
+    int height(Node *root) {
+        if (root == NULL) {
+            return 0;
+        }
+        return 1 + max(height(root->left), height(root->right));
+    }
+
+    void swapChildren(Node *root) {
+        if (root != NULL) {
+            swap(root->left, root->right);
+            swapChildren(root->left);
+            swapChildren(root->right);
+        }
+    }
+
 };
 
 int main()
@@ -113,7 +131,9 @@ int main()
         cout << "2. Traversal" << endl;
         cout << "3. Search" << endl;
         cout << "4. Min" << endl;
-        cout << "5. Exit " << endl;
+        cout << "5. Longest Path from root" << endl;
+        cout << "6. Swap nodes" << endl;
+        cout << "7. Exit " << endl;
         cin >> ch;
 
         switch (ch)
@@ -167,9 +187,23 @@ int main()
                 cout << "Min Element : ";
                 tree.min(tree.root);
             }();
+            break;
+        case 5:
+            [&]() {
+                cout << "Longest path : ";
+                cout << tree.height(tree.root) << endl;
+            }();
+            break;
+        case 6:
+            [&]() {
+                cout << "Swap nodes: ";
+                tree.swapChildren(tree.root);
+                tree.preorder(tree.root);
+            }();
+            break;
         }
 
-    } while (ch != 5);
+    } while (ch != 7);
 
     return 0;
 }
@@ -183,12 +217,15 @@ Choose Operation:
 2. Traversal
 3. Search
 4. Min
-5. Exit 
+5. Longest Path from root
+6. Swap nodes
+7. Exit 
+
 1
+
 Enter the number of Elements you want to insert: 3
-10
-9
-15
+10 9 15
+
 Insertion Complete ... 
 
 Choose Operation: 
@@ -196,8 +233,12 @@ Choose Operation:
 2. Traversal
 3. Search
 4. Min
-5. Exit 
+5. Longest Path from root
+6. Swap nodes
+7. Exit 
+
 2
+
 Traversals ...
 PreOrder
 10 9 15 
@@ -205,29 +246,65 @@ InOrder
 9 10 15 
 PostOrder
 9 15 10 
+
 Choose Operation: 
 1. Insert
 2. Traversal
 3. Search
 4. Min
-5. Exit 
+5. Longest Path from root
+6. Swap nodes
+7. Exit 
+
 3
+
 Enter element to search : 15
-Enter found :) 
+Entry found :) 
 Choose Operation: 
 1. Insert
 2. Traversal
 3. Search
 4. Min
-5. Exit 
+5. Longest Path from root
+6. Swap nodes
+7. Exit 
+
 4
+
 Min Element : 9
+
 Choose Operation: 
 1. Insert
 2. Traversal
 3. Search
 4. Min
-5. Exit 
+5. Longest Path from root
+6. Swap nodes
+7. Exit 
+
 5
+
+Longest path : 2
+Choose Operation: 
+1. Insert
+2. Traversal
+3. Search
+4. Min
+5. Longest Path from root
+6. Swap nodes
+7. Exit 
+
+6
+
+Swap nodes: 10 15 9 Choose Operation: 
+1. Insert
+2. Traversal
+3. Search
+4. Min
+5. Longest Path from root
+6. Swap nodes
+7. Exit 
+
+7
 
 */

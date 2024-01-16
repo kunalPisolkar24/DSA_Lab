@@ -1,0 +1,2 @@
+1|Victor|Slave|3000
+2|Gon|Dinosaur|999
